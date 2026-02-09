@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Serif+4:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <main class="page">
+      <header class="hero">
+        <div class="badge">Educational Demo</div>
+        <h1>Bias In, Bias Out: Understanding Discrimination in Conversational AI</h1>
+        <p>
+          This chatbot shows two contrasting responses to the same user message: one
+          biased, one fair. The goal is to surface how discrimination shows up in
+          job contexts across nationality, gender, and salary decisions.
+        </p>
+      </header>
+
+      <section class="notice" role="note">
+        <strong>Important:</strong>
+        The “Biased response” column contains intentionally unfair language for teaching
+        purposes. Do not use it in real systems.
+      </section>
+
+      <section class="chat">
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <input
+            id="chat-input"
+            type="text"
+            placeholder="Ask about nationality, gender, pay gaps, promotions, or interview bias..."
+            aria-label="Chat input"
+            required
+          />
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="examples">
+          <span>Examples:</span>
+          <button class="chip" data-example="My nationality is Pakistani. Will that affect hiring in Europe?">Nationality & hiring</button>
+          <button class="chip" data-example="I'm a female candidate applying for a software engineer role.">Gender & hiring</button>
+          <button class="chip" data-example="Is the gender pay gap normal for tech salaries?">Gender pay gap</button>
+          <button class="chip" data-example="I'm European and negotiating salary for a data analyst job.">Nationality & salary</button>
+          <button class="chip" data-example="What should determine promotion to team lead?">Promotion criteria</button>
+          <button class="chip" data-example="My accent is noticeable in interviews. Will that hurt my chances?">Accent bias</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
