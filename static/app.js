@@ -22,22 +22,26 @@ function renderExchange(userText, data) {
   exchange.className = "exchange";
 
   const biasNote = data.bias_note ? `
-    <div class="response-note">Why it's biased: ${escapeHtml(data.bias_note)}</div>
+    <div class="note">Why it's biased: ${escapeHtml(data.bias_note)}</div>
   ` : "";
 
   exchange.innerHTML = `
-    <div class="user-line">
-      <span class="user-label">You</span>
-      <p>${escapeHtml(userText)}</p>
+    <div class="message user">
+      <div class="bubble">
+        <div class="meta">You</div>
+        <p>${escapeHtml(userText)}</p>
+      </div>
     </div>
-    <div class="response-grid">
-      <div class="response-card biased">
-        <div class="response-title">Biased response (for demonstration)</div>
+    <div class="message bot biased">
+      <div class="bubble">
+        <div class="meta">Biased response</div>
         <p>${escapeHtml(data.biased)}</p>
         ${biasNote}
       </div>
-      <div class="response-card fair">
-        <div class="response-title">Fair response</div>
+    </div>
+    <div class="message bot fair">
+      <div class="bubble">
+        <div class="meta">Fair response</div>
         <p>${escapeHtml(data.fair)}</p>
       </div>
     </div>
@@ -49,8 +53,13 @@ function renderExchange(userText, data) {
 
 function showTyping() {
   const typing = document.createElement("div");
-  typing.className = "typing";
-  typing.textContent = "Preparing contrasting responses...";
+  typing.className = "message bot typing";
+  typing.innerHTML = `
+    <div class="bubble">
+      <div class="meta">Bot</div>
+      <p>Preparing contrasting responses...</p>
+    </div>
+  `;
   log.appendChild(typing);
   scrollToBottom();
   return typing;
